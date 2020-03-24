@@ -2,10 +2,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="ltd.tomford.contacttracer.MainActivity">
+
     <item
-        android:id="@+id/action_edit"
+        android:id="@+id/action_filter"
         android:orderInCategory="99"
-        android:title="@string/edit_contact_menu_item"
-        android:icon="@drawable/ic_edit_white_24dp"
-        app:showAsAction="always" />
+        android:title="@string/filter_menu_title"
+        android:icon="@drawable/ic_filter_list_white_24dp"
+        app:showAsAction="always"/>
+
 </menu>

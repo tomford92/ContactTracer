@@ -36,6 +36,7 @@
     <string name="email_hint">Email</string>
     <string name="number_hint">Phone number</string>
     <string name="contact_name_hint">Contact name</string>
+    <string name="filter_menu_title">Filter</string>
 
 
 </resources>

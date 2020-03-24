@@ -1,10 +1,8 @@
 package ltd.tomford.contacttracer
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -19,6 +17,11 @@ import ltd.tomford.contacttracer.viewmodels.ContactViewModel
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 class ContactsFragment : Fragment() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +45,10 @@ class ContactsFragment : Fragment() {
 
         val contactViewModel = ViewModelProvider(this).get(ContactViewModel::class.java)
         contactViewModel.allContacts.observe(viewLifecycleOwner, Observer { contacts ->
-            contacts?.let { adapter?.setContacts(it) }
+            contacts?.let { contactsList ->
+                val sortedList = contactsList.sortedWith(compareBy {it.date}).asReversed()
+                adapter?.setContacts(sortedList)
+            }
         })
 
         view.findViewById<FloatingActionButton>(R.id.addContactFab).setOnClickListener {
@@ -53,5 +59,23 @@ class ContactsFragment : Fragment() {
     private fun viewContact(contactId: Int) {
         val action = ContactsFragmentDirections.actionFirstFragmentToViewContactFragment(contactId)
         findNavController().navigate(action)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_contacts, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_filter -> {
+//                val navController = findNavController()
+//                val action = ViewContactFragmentDirections.actionViewContactFragmentToAddContactFragment(args.contactId)
+//                navController.navigate(action)
+//                return true
+            }
+
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

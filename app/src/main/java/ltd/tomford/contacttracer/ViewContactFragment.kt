@@ -26,8 +26,6 @@ class ViewContactFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        val actionbar = activity?.actionBar
         return inflater.inflate(R.layout.fragment_view_contact, container, false)
     }
 
@@ -76,8 +74,16 @@ class ViewContactFragment : Fragment() {
         val contactViewModel = ViewModelProvider(this).get(ContactViewModel::class.java)
         contactViewModel.getContactById(contactId).observe(viewLifecycleOwner, Observer { contact ->
             nameTV.text = contact.name
-            numberTV.text = contact.number.toString()
-            emailTV.text = contact.email
+            if (contact.number == null||contact.number == "") {
+                numberTV.text = "--"
+            } else {
+                numberTV.text = contact.number.toString()
+            }
+            if (contact.email.isNullOrEmpty()) {
+                emailTV.text = "--"
+            } else {
+                emailTV.text = contact.email
+            }
             dateTV.text = contact.date
         })
 
