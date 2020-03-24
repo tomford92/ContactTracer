@@ -1,0 +1,46 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory app:title="@string/contact_trace_header">
+
+        <SwitchPreferenceCompat
+            app:key="contactTrace"
+            android:persistent="true"
+            app:title="@string/contact_trace_title"
+            app:summaryOff="@string/contact_trace_summary_off"
+            app:summaryOn="@string/contact_trace_summary_on"
+            android:icon="@drawable/ic_warning_secondary_48dp"/>
+
+        <EditTextPreference
+            app:dependency="contactTrace"
+            app:key="incubationPeriod"
+            app:useSimpleSummaryProvider="true"
+            app:title="@string/incubation_period_title"
+            android:inputType="number"
+            android:persistent="true"
+            android:icon="@drawable/ic_incubation_secondary_48dp"/>
+
+        <DatePickerPreference
+            android:dependency="contactTrace"
+            app:key="dateOfInfection"
+            app:title="@string/date_of_infection_title"
+            app:summary="@string/date_of_infection_summary"
+            android:persistent="true"
+            android:icon="@drawable/ic_calendar_secondary_48dp"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Other">
+
+        <SwitchPreferenceCompat
+            app:key="darkTheme"
+            android:persistent="true"
+            app:title="@string/dark_theme_title"
+            app:summaryOff="@string/dark_theme_summary_off"
+            app:summaryOn="@string/dark_theme_summary_on"
+            android:defaultValue="false"
+            android:icon="@drawable/ic_invert_colors_secondary_24dp"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

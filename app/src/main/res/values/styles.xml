@@ -1,0 +1,150 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#212121</item>
+        <item name="colorPrimaryVariant">#000000</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">#2962FF</item>
+        <item name="colorSecondaryVariant">#0039CB</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorError">#F44336</item>
+        <item name="colorOnError">#FFFFFF</item>
+        <item name="colorSurface">#FFFFFF</item>
+        <item name="colorOnSurface">#212121</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorOnBackground">#212121</item>
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="TextInputLayoutStyle" parent="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
+    </style>
+
+    <style name="CustomCardViewStyleAll" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.CardRoundedCorners.All</item>
+        <item name="elevation">4dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.CardRoundedCorners.All" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">4dp</item>
+        <item name="cornerSizeTopLeft">4dp</item>
+        <item name="cornerSizeBottomRight">4dp</item>
+        <item name="cornerSizeBottomLeft">4dp</item>
+    </style>
+
+    <!-- region Text Styles -->
+    <style name="Text.Title" parent="TextAppearance.AppCompat.Headline" >
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/colorOnSurface</item>
+    </style>
+
+    <style name="Text.Title.ViewContact" parent="TextAppearance.AppCompat.Headline" >
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/colorOnSurface</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text.Title.ViewContact.Content" parent="TextAppearance.AppCompat.Headline" >
+        <item name="android:textSize">18sp</item>
+    </style>
+
+
+    <!-- region button styles -->
+        <style name="Button" parent="Base.TextAppearance.AppCompat.Widget.Button" >
+            <item name="android:fontFamily">@font/roboto</item>
+            <item name="android:textAllCaps">false</item>
+            <item name="android:minWidth">48dp</item>
+            <item name="android:minHeight">48dp</item>
+        </style>
+
+        <style name="Button.Filled" >
+            <item name="android:textColor">@color/colorOnSecondary</item>
+            <item name="android:background">@color/colorSecondary</item>
+            <item name="backgroundColor">@color/colorSecondary</item>
+            <item name="backgroundTint">@color/colorSecondary</item>
+        </style>
+
+    <!--    <style name="Button.LPG.Outline" >-->
+    <!--        <item name="android:textColor">?colorPrimary</item>-->
+    <!--        <item name="android:background">@drawable/outline_button_background</item>-->
+    <!--        <item name="android:stateListAnimator">@null</item>-->
+    <!--        <item name="android:textSize">@dimen/text_size_large</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="Button.LPG.Borderless" >-->
+    <!--        <item name="android:textColor">?colorPrimary</item>-->
+    <!--        <item name="android:background">@drawable/borderless_button_background</item>-->
+    <!--        <item name="android:stateListAnimator">@null</item>-->
+    <!--        <item name="android:textSize">@dimen/text_size_large</item>-->
+    <!--    </style>-->
+
+    <!--    &lt;!&ndash; endregion &ndash;&gt;-->
+
+<!--    <style name="Text.PlantLife.Heading1.White" parent="TextAppearance.AppCompat.Headline" >-->
+<!--        <item name="android:textSize">@dimen/text_size_22sp</item>-->
+<!--        <item name="android:textColor">@color/colortextHeadingWhite</item>-->
+<!--        <item name="android:textStyle">bold</item>-->
+<!--    </style>-->
+
+<!--    <style name="Text.PlantLife.Heading1.Dark" parent="TextAppearance.AppCompat.Headline" >-->
+<!--        <item name="android:textSize">@dimen/text_size_22sp</item>-->
+<!--        <item name="android:textColor">@color/colorTextHeadingDark</item>-->
+<!--        <item name="android:textStyle">bold</item>-->
+<!--    </style>-->
+
+<!--    <style name="Text.PlantLife.Body.White" parent="TextAppearance.AppCompat.Headline" >-->
+<!--        <item name="android:textSize">@dimen/text_size_16sp</item>-->
+<!--        <item name="android:textColor">@color/colortextHeadingWhite</item>-->
+<!--    </style>-->
+
+<!--    <style name="Text.PlantLife.Body.White.LargeBold" parent="TextAppearance.AppCompat.Headline" >-->
+<!--        <item name="android:textSize">@dimen/text_size_18sp</item>-->
+<!--        <item name="android:textColor">@color/colortextHeadingWhite</item>-->
+<!--        <item name="android:textStyle">bold</item>-->
+<!--    </style>-->
+
+<!--    <style name="Text.PlantLife.Body.Dark" parent="TextAppearance.AppCompat.Headline" >-->
+<!--        <item name="android:textSize">@dimen/text_size_16sp</item>-->
+<!--        <item name="android:textColor">@color/colorTextHeadingDark</item>-->
+<!--    </style>-->
+
+<!--    <style name="Text.PlantLife.Body.Dark.Small" parent="TextAppearance.AppCompat.Headline" >-->
+<!--        <item name="android:textSize">@dimen/text_size_12sp</item>-->
+<!--        <item name="android:textColor">@color/colorTextHeadingDark</item>-->
+<!--    </style>-->
+
+<!--    <style name="Text.PlantLife.Body.Dark.Bold" parent="TextAppearance.AppCompat.Headline" >-->
+<!--        <item name="android:textSize">@dimen/text_size_16sp</item>-->
+<!--        <item name="android:textStyle">bold</item>-->
+<!--        <item name="android:textColor">@color/colorTextHeadingDark</item>-->
+<!--    </style>-->
+
+<!--    <style name="Text.PlantLife.Body.Dark.Small.Bold" parent="TextAppearance.AppCompat.Headline" >-->
+<!--        <item name="android:textSize">@dimen/text_size_12sp</item>-->
+<!--        <item name="android:textStyle">bold</item>-->
+<!--        <item name="android:textColor">@color/colorTextHeadingDark</item>-->
+<!--    </style>-->
+
+<!--    <style name="Text.PlantLife.Body.Faded" parent="TextAppearance.AppCompat.Headline" >-->
+<!--        <item name="android:textSize">@dimen/text_size_16sp</item>-->
+<!--        <item name="android:textColor">@color/colorTextFaded</item>-->
+<!--    </style>-->
+
+<!--    <style name="Text.PlantLife.Body.Faded.Small" parent="TextAppearance.AppCompat.Headline" >-->
+<!--        <item name="android:textSize">@dimen/text_size_12sp</item>-->
+<!--        <item name="android:textColor">@color/colorTextFaded</item>-->
+<!--    </style>-->
+
+</resources>

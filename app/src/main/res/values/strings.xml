@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">Contact Tracer</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Preference Titles -->
+    <string name="contact_trace_header">Contact tracing</string>
+    <style name="other_settings_header">Other</style>
+
+    <!-- Contact Trace Preferences -->
+    <string name="contact_trace_title">Do you need to contact trace?</string>
+    <string name="contact_trace_summary_on">Yes, I feel ill and need to contact trace</string>
+    <string name="contact_trace_summary_off">No, I feel fine and don\'t need to contact trace</string>
+    <string name="incubation_period_title">Incubation period in days</string>
+    <string name="incubation_period_summary">What is the known incubation period of your illness?</string>
+    <string name="date_of_infection_title">Date of suspected infection</string>
+    <string name="date_of_infection_summary">When did you start to feel unwell?</string>
+    <string name="date_of_last_contact_title">Date of last contact:</string>
+    <string name="edit_contact_menu_item">Edit contact</string>
+
+    <!-- Other Settings Preferences -->
+    <string name="dark_theme_title">Use dark theme?</string>
+    <string name="dark_theme_summary_on">Dark theme selected</string>
+    <string name="dark_theme_summary_off">Light theme selected</string>
+    <string name="last_contact_rv_tv">Last contact:</string>
+    <string name="save_contact_button_title">Save contact</string>
+    <string name="date_of_last_contact_hint">Date of last contact</string>
+    <string name="email_hint">Email</string>
+    <string name="number_hint">Phone number</string>
+    <string name="contact_name_hint">Contact name</string>
+
+
+</resources>
