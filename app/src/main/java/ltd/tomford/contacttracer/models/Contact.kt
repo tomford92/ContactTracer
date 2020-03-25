@@ -16,6 +16,24 @@ class Contact(
 
     var email: String? = null,
 
-    var date: String) {
+    var date: String)   {
+
+    var hasEmail: Boolean = hasEmail()
+
+    var hasNumber: Boolean = hasNumber()
+
+    var atRisk: Boolean = isAtRisk()
+
+    private fun hasEmail(): Boolean {
+        return !email.isNullOrEmpty()
+    }
+
+    private fun hasNumber(): Boolean {
+        return !number.isNullOrEmpty()
+    }
+
+    private fun isAtRisk(): Boolean {
+        return true
+    }
 
 }

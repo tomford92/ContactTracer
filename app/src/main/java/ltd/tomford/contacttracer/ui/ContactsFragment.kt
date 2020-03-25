@@ -1,22 +1,27 @@
-package ltd.tomford.contacttracer
+package ltd.tomford.contacttracer.ui
 
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import android.widget.Button
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import ltd.tomford.contacttracer.R
 import ltd.tomford.contacttracer.adapters.ContactListAdapter
+import ltd.tomford.contacttracer.models.Contact
 import ltd.tomford.contacttracer.viewmodels.ContactViewModel
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class ContactsFragment : Fragment() {
+class ContactsFragment : Fragment(), FilterBottomSheet.FilterBottomSheetListener {
+
+    private lateinit var adapter: ContactListAdapter
+    lateinit var filterModel: LiveData<Contact>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,11 +40,9 @@ class ContactsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val contactsRV = view.findViewById<RecyclerView>(R.id.contactsRV)
-        val adapter = context?.let {
-            ContactListAdapter(it, clickListener = { contactId ->
-                viewContact(contactId)
-            })
-        }
+        adapter = ContactListAdapter(context!!, clickListener = { contactId ->
+            viewContact(contactId)
+        })
         contactsRV.adapter = adapter
         contactsRV.layoutManager = LinearLayoutManager(context)
 
@@ -47,7 +50,7 @@ class ContactsFragment : Fragment() {
         contactViewModel.allContacts.observe(viewLifecycleOwner, Observer { contacts ->
             contacts?.let { contactsList ->
                 val sortedList = contactsList.sortedWith(compareBy {it.date}).asReversed()
-                adapter?.setContacts(sortedList)
+                adapter.setContacts(sortedList)
             }
         })
 
@@ -57,7 +60,10 @@ class ContactsFragment : Fragment() {
     }
 
     private fun viewContact(contactId: Int) {
-        val action = ContactsFragmentDirections.actionFirstFragmentToViewContactFragment(contactId)
+        val action =
+            ContactsFragmentDirections.actionFirstFragmentToViewContactFragment(
+                contactId
+            )
         findNavController().navigate(action)
     }
 
@@ -69,13 +75,33 @@ class ContactsFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_filter -> {
-//                val navController = findNavController()
-//                val action = ViewContactFragmentDirections.actionViewContactFragmentToAddContactFragment(args.contactId)
-//                navController.navigate(action)
-//                return true
+                val filterBottomSheet = FilterBottomSheet()
+                filterBottomSheet.setTargetFragment(this, 100)
+                filterBottomSheet.show(fragmentManager!!, FilterBottomSheet.TAG)
             }
-
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onFinishFilterBottomSheet(atRisk: Boolean, hasNumber: Boolean, hasEmail: Boolean) {
+
+        val filters = HashMap<String, Boolean>()
+        filters["atRisk"] = atRisk
+        filters["hasNumber"] = hasNumber
+        filters["hasEmail"] = hasEmail
+        val contactViewModel = ViewModelProvider(this).get(ContactViewModel::class.java)
+
+        with(contactViewModel) {
+            //pass my HashMap to my ViewModel for update/change/set on filters MutableLiveData HashMap variable
+            setFilters(filters)
+        }
+
+        contactViewModel.filtered.observe(viewLifecycleOwner, Observer { contacts ->
+            contacts?.let { contactsList ->
+                val sortedList = contactsList.sortedWith(compareBy {it.date}).asReversed()
+                adapter.setContacts(sortedList)
+            }
+        })
+
     }
 }

@@ -37,6 +37,13 @@
     <string name="number_hint">Phone number</string>
     <string name="contact_name_hint">Contact name</string>
     <string name="filter_menu_title">Filter</string>
+    <string name="at_risk_menu_item">At risk</string>
+    <string name="has_number_menu_item">Has number</string>
+    <string name="has_email_menu_item">Has email</string>
+    <string name="apply_filters_button_text">Apply filters</string>
+    <string name="at_risk_checkbox_text">At risk</string>
+    <string name="has_number_checkbox_text">Has number</string>
+    <string name="has_email_checkbox_text">Has email</string>
 
 
 </resources>

@@ -9,7 +9,7 @@ import ltd.tomford.contacttracer.models.Contact
 
 @Database(
     entities = [Contact::class],
-    version = 3,
+    version = 4,
     exportSchema = false)
 abstract class ContactDatabase: RoomDatabase() {
 

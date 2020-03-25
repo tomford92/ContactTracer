@@ -6,7 +6,7 @@
     app:startDestination="@id/contactsFragment">
     <fragment
         android:id="@+id/contactsFragment"
-        android:name="ltd.tomford.contacttracer.ContactsFragment"
+        android:name="ltd.tomford.contacttracer.ui.ContactsFragment"
         android:label="Contacts"
         tools:layout="@layout/fragment_contacts">
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/addContactFragment"
-        android:name="ltd.tomford.contacttracer.AddContactFragment"
+        android:name="ltd.tomford.contacttracer.ui.AddContactFragment"
         android:label="Add contact"
         tools:layout="@layout/fragment_add_contact" >
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/viewContactFragment"
-        android:name="ltd.tomford.contacttracer.ViewContactFragment"
+        android:name="ltd.tomford.contacttracer.ui.ViewContactFragment"
         android:label="View contact" >
         <argument
             android:name="contactId"

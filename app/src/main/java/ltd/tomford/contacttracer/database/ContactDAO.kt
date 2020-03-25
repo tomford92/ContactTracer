@@ -25,4 +25,7 @@ interface ContactDAO {
     @Query("SELECT * FROM contacts_table WHERE id=:id")
     fun getContactById(id: Int): LiveData<Contact>
 
+    @Query("SELECT * FROM contacts_table WHERE atRisk LIKE '%' || :atRisk || '%' AND hasNumber LIKE '%' || :hasNumber || '%' AND hasEmail LIKE '%' || :hasEmail || '%' ")
+    fun getFiltered(atRisk: Boolean, hasNumber: Boolean, hasEmail: Boolean): LiveData<List<Contact>>
+
 }

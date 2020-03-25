@@ -19,4 +19,6 @@ class ContactRepo(private val contactDAO: ContactDAO) {
         return contactDAO.getContactById(id)
     }
 
+    fun searchBy(atRisk: Boolean, hasEmail: Boolean, hasNumber: Boolean) = contactDAO.getFiltered(atRisk, hasEmail, hasNumber)
+
 }
