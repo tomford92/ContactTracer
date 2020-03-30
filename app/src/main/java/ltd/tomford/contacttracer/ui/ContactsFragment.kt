@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -59,6 +60,28 @@ class ContactsFragment : Fragment(), FilterBottomSheet.FilterBottomSheetListener
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        getFilterPrefsAndSet()
+    }
+
+    //this method retrieves the last filters chosen from shared preferences and calls the
+    // setFilters(boolean, boolean) method to set them. It is called in onResume() only, as
+    // filters are reset if the app is closed/opened again
+    private fun getFilterPrefsAndSet() {
+        val sharedPreferences =
+            PreferenceManager.getDefaultSharedPreferences(context)
+        val filterSet = sharedPreferences.getBoolean("filterSet", false)
+        if (!filterSet) {
+            return
+        } else {
+            val hasEmail = sharedPreferences.getBoolean("hasEmail", false)
+            val hasNumber = sharedPreferences.getBoolean("hasNumber", false)
+            setFilters(hasNumber, hasEmail)
+        }
+    }
+
+    // takes an (Int) variable contactId and opens the ViewContactFragment, passing in the contactId
     private fun viewContact(contactId: Int) {
         val action =
             ContactsFragmentDirections.actionFirstFragmentToViewContactFragment(
@@ -83,10 +106,11 @@ class ContactsFragment : Fragment(), FilterBottomSheet.FilterBottomSheetListener
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onFinishFilterBottomSheet(atRisk: Boolean, hasNumber: Boolean, hasEmail: Boolean) {
-
+    //this method takes 2 booleans, one for each filter, and calls the setFilters() method on the ContactViewModel
+    // it is called from onFilterPrefsAndSet() - which applies filters when resuming activity, and
+    // onFinishFilterBottomSheet - which applies filters when closing the FilterBottomSheet
+    private fun setFilters(hasNumber: Boolean, hasEmail: Boolean) {
         val filters = HashMap<String, Boolean>()
-        filters["atRisk"] = atRisk
         filters["hasNumber"] = hasNumber
         filters["hasEmail"] = hasEmail
         val contactViewModel = ViewModelProvider(this).get(ContactViewModel::class.java)
@@ -102,6 +126,19 @@ class ContactsFragment : Fragment(), FilterBottomSheet.FilterBottomSheetListener
                 adapter.setContacts(sortedList)
             }
         })
+    }
 
+    override fun onFinishFilterBottomSheet(hasNumber: Boolean, hasEmail: Boolean, filterSet: Boolean) {
+        if (filterSet) {
+            setFilters(hasNumber, hasEmail)
+        } else {
+            val contactViewModel = ViewModelProvider(this).get(ContactViewModel::class.java)
+            contactViewModel.allContacts.observe(viewLifecycleOwner, Observer { contacts ->
+                contacts?.let { contactsList ->
+                    val sortedList = contactsList.sortedWith(compareBy {it.date}).asReversed()
+                    adapter.setContacts(sortedList)
+                }
+            })
+        }
     }
 }

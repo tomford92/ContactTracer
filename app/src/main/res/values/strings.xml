@@ -44,6 +44,7 @@
     <string name="at_risk_checkbox_text">At risk</string>
     <string name="has_number_checkbox_text">Has number</string>
     <string name="has_email_checkbox_text">Has email</string>
+    <string name="clear_filters_button">Clear all filters</string>
 
 
 </resources>

@@ -3,6 +3,7 @@ package ltd.tomford.contacttracer.viewmodels
 import android.app.Application
 import android.graphics.ColorSpace.Model
 import androidx.lifecycle.*
+import androidx.sqlite.db.SimpleSQLiteQuery
 import kotlinx.coroutines.launch
 import ltd.tomford.contacttracer.database.ContactDatabase
 import ltd.tomford.contacttracer.database.ContactRepo
@@ -51,8 +52,33 @@ class ContactViewModel(application: Application): AndroidViewModel(application) 
                 }
             }
         }
+
+        val queryString = generateFilterQuery(hasNumber, hasEmail)
+        val simpleSQLiteQuery = SimpleSQLiteQuery(queryString)
+        contactRepo.getRawFiltered(simpleSQLiteQuery)
         //pass strings to DAO
-        contactRepo.searchBy(atRisk, hasEmail, hasNumber)
+//        contactRepo.searchBy(number)
+    }
+
+    fun generateFilterQuery(hasNumber: Boolean, hasEmail: Boolean): String {
+
+        var baseQuery = "SELECT * FROM contacts_table WHERE"
+
+        baseQuery += if (hasNumber) {
+            " number IS NOT NULL"
+        } else {
+            " number IS NULL"
+        }
+
+        baseQuery += " AND"
+
+        baseQuery += if (hasEmail) {
+            " email IS NOT NULL"
+        } else {
+            " email IS NULL"
+        }
+
+        return baseQuery
     }
 
     companion object {

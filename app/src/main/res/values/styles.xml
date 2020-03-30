@@ -76,6 +76,13 @@
             <item name="backgroundTint">@color/colorSecondary</item>
         </style>
 
+    <style name="Button.Filled.Surface" >
+        <item name="android:textColor">@color/colorOnSurface</item>
+        <item name="android:background">@color/colorSurface</item>
+        <item name="backgroundColor">@color/colorSurface</item>
+        <item name="backgroundTint">@color/colorSurface</item>
+    </style>
+
     <!--    <style name="Button.LPG.Outline" >-->
     <!--        <item name="android:textColor">?colorPrimary</item>-->
     <!--        <item name="android:background">@drawable/outline_button_background</item>-->

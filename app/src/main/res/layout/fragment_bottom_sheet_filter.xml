@@ -11,20 +11,11 @@
     android:background="@color/colorSurface">
 
     <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/atRiskCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/at_risk_checkbox_text"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/numberCheckBox"/>
-
-    <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/numberCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/has_number_checkbox_text"
-        app:layout_constraintTop_toBottomOf="@id/atRiskCheckBox"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/emailCheckBox"/>
 
@@ -39,15 +30,29 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/applyFiltersButton"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/apply_filters_button_text"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintTop_toBottomOf="@id/emailCheckBox"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/clearFiltersButton"
         style="@style/Button.Filled"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/clearFiltersButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/clear_filters_button"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintTop_toBottomOf="@id/emailCheckBox"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/applyFiltersButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/Button.Filled.Surface"/>
 
 
 
