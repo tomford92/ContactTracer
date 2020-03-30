@@ -1,4 +1,4 @@
-package ltd.tomford.contacttracer
+package ltd.tomford.contacttracer.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
 import androidx.preference.*
 import kotlinx.android.synthetic.main.settings_activity.*
+import ltd.tomford.contacttracer.R
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -16,7 +17,10 @@ class SettingsActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.settings, SettingsFragment())
+            .replace(
+                R.id.settings,
+                SettingsFragment()
+            )
             .commit()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }

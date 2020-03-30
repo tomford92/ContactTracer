@@ -1,6 +1,7 @@
 package ltd.tomford.contacttracer.database
 
 import androidx.lifecycle.LiveData
+import androidx.sqlite.db.SimpleSQLiteQuery
 import ltd.tomford.contacttracer.models.Contact
 
 class ContactRepo(private val contactDAO: ContactDAO) {
@@ -18,5 +19,9 @@ class ContactRepo(private val contactDAO: ContactDAO) {
     fun getContactById(id: Int): LiveData<Contact> {
         return contactDAO.getContactById(id)
     }
+
+    fun searchBy(number: String?) = contactDAO.getFiltered(number)
+
+    fun getRawFiltered(query: SimpleSQLiteQuery) = contactDAO.getRawFiltered(query)
 
 }

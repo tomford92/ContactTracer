@@ -1,4 +1,4 @@
-package ltd.tomford.contacttracer
+package ltd.tomford.contacttracer.ui
 
 import android.content.Intent
 import android.net.Uri
@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import ltd.tomford.contacttracer.R
 import ltd.tomford.contacttracer.viewmodels.ContactViewModel
 
 class ViewContactFragment : Fragment() {
@@ -38,7 +39,10 @@ class ViewContactFragment : Fragment() {
         when (item.itemId) {
             R.id.action_edit -> {
                 val navController = findNavController()
-                val action = ViewContactFragmentDirections.actionViewContactFragmentToAddContactFragment(args.contactId)
+                val action =
+                    ViewContactFragmentDirections.actionViewContactFragmentToAddContactFragment(
+                        args.contactId
+                    )
                 navController.navigate(action)
                 return true
             }

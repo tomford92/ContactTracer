@@ -2,6 +2,7 @@ package ltd.tomford.contacttracer.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import androidx.sqlite.db.SupportSQLiteQuery
 import ltd.tomford.contacttracer.models.Contact
 
 @Dao
@@ -24,5 +25,11 @@ interface ContactDAO {
 
     @Query("SELECT * FROM contacts_table WHERE id=:id")
     fun getContactById(id: Int): LiveData<Contact>
+
+    @Query("SELECT * FROM contacts_table WHERE number=:number")
+    fun getFiltered(number: String?): LiveData<List<Contact>>
+
+    @RawQuery(observedEntities = [Contact::class])
+    fun getRawFiltered(query: SupportSQLiteQuery): LiveData<List<Contact>>
 
 }

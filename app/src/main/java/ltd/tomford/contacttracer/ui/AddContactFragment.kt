@@ -1,11 +1,10 @@
-package ltd.tomford.contacttracer
+package ltd.tomford.contacttracer.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -13,10 +12,10 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.datetime.datePicker
 import kotlinx.android.synthetic.main.fragment_add_contact.*
 import kotlinx.android.synthetic.main.fragment_add_contact.view.*
+import ltd.tomford.contacttracer.R
 import ltd.tomford.contacttracer.models.Contact
 import ltd.tomford.contacttracer.utils.DateTimeUtils
 import ltd.tomford.contacttracer.viewmodels.ContactViewModel
-import java.time.LocalDate
 import java.time.ZoneId
 import java.util.*
 
@@ -70,8 +69,16 @@ class AddContactFragment : Fragment() {
     private fun saveContact() {
 
         val name = contactNameET.text.toString()
-        val numberString = contactNumberET.text.toString()
-        val email = contactEmailET.text.toString()
+
+        var numberString: String? = contactNumberET.text.toString()
+        if (numberString == "") { // we do this to set a null value when blank rather than "" - so we can filter by null in DB rather than ""
+            numberString = null
+        }
+
+        var email: String? = contactEmailET.text.toString()
+        if (email == "") { // we do this to set a null value when blank rather than "" - so we can filter by null in DB rather than ""
+            email = null
+        }
         val date = contactDateET.text.toString()
 
         if (name.isEmpty()) {

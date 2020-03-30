@@ -2,17 +2,14 @@ package ltd.tomford.contacttracer
 
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import androidx.annotation.MainThread
-import androidx.navigation.NavController
-import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 
 import kotlinx.android.synthetic.main.activity_main.*
+import ltd.tomford.contacttracer.ui.SettingsActivity
 
 class MainActivity : AppCompatActivity() {
 
