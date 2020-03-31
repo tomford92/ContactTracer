@@ -12,4 +12,5 @@
     <color name="colorOnSurface">#212121</color>
     <color name="colorOnBackground">#212121</color>
     <color name="background">#DADADA</color>
+    <color name="dividerColor">#1F000000</color>
 </resources>
