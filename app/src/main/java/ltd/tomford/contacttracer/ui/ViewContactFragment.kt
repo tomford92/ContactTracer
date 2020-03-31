@@ -56,14 +56,40 @@ class ViewContactFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val contactId = args.contactId
+        val contactLetterCircleTV = view.findViewById<TextView>(R.id.contactLetterCircleTV)
         val nameTV = view.findViewById<TextView>(R.id.contactNameTV)
         val numberTV = view.findViewById<TextView>(R.id.numberTV)
         val emailTV = view.findViewById<TextView>(R.id.emailTV)
         val dateTV = view.findViewById<TextView>(R.id.lastContactTV)
+        val callActionTV = view.findViewById<TextView>(R.id.callButton)
+        val textActionTV = view.findViewById<TextView>(R.id.textButton)
+        val emailActionTV = view.findViewById<TextView>(R.id.emailButton)
+
+
+        callActionTV.setOnClickListener {
+            val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + numberTV.text.toString()))
+            startActivity(intent)
+        }
 
         numberTV.setOnClickListener {
             val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + numberTV.text.toString()))
             startActivity(intent)
+        }
+
+        textActionTV.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse("sms:")
+            intent.putExtra("address", numberTV.text.toString())
+            startActivity(intent)
+        }
+
+        emailActionTV.setOnClickListener {
+            val i = Intent(Intent.ACTION_SEND)
+            i.type = "plain/text"
+            val emailArray = arrayOf(emailTV.text.toString())
+            i.putExtra("android.intent.extra.EMAIL", emailArray)
+            i.putExtra("android.intent.extra.SUBJECT", "URGENT Contact Tracing - Possible Infection")
+            startActivity(Intent.createChooser(i, "Email contact"))
         }
 
         emailTV.setOnClickListener {
@@ -77,6 +103,7 @@ class ViewContactFragment : Fragment() {
 
         val contactViewModel = ViewModelProvider(this).get(ContactViewModel::class.java)
         contactViewModel.getContactById(contactId).observe(viewLifecycleOwner, Observer { contact ->
+            contactLetterCircleTV.text = contact.name.first().toString()
             nameTV.text = contact.name
             if (contact.number == null||contact.number == "") {
                 numberTV.text = "--"
